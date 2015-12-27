@@ -1,25 +1,36 @@
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateCalculator {
 	
 	private static Calendar calendar;
-
-	public static void main(String[] args) {
+	private ArrayList<Date> list;
+	
+	public ArrayList<Date> getAll(int day, int year){
 		calendar = Calendar.getInstance();
-		calendar.set(2016,0,1);
-		while(calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY){
-			calendar.add(Calendar.DAY_OF_MONTH, 1);
+		list = new ArrayList<>();
+		
+		if(day > 7 || day < 1){ 
+			//error
 		}
-		System.out.println(calendar.getTime());
-		while(calendar.get(Calendar.YEAR) == 2016){
+		if(year > calendar.getActualMaximum(Calendar.YEAR) || year < calendar.getActualMinimum(Calendar.YEAR)){
+			//error
+		}
+
+		calendar.set(year ,0,day);
+		while(calendar.get(Calendar.DAY_OF_WEEK) != day){
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+		} 
+		
+		list.add(calendar.getTime());
+		while(calendar.get(Calendar.YEAR) == year){
 			calendar.add(Calendar.DAY_OF_MONTH, 7);
-			if(calendar.get(Calendar.YEAR)==2016){
-				System.out.println(calendar.getTime());
+			if(calendar.get(Calendar.YEAR)==year){
+				list.add(calendar.getTime());
 			}
 		}
+		return list;
 	}
-
-	
-	
 }
