@@ -178,11 +178,11 @@ public class GUI extends JFrame {
 			break;
 		}
 		case "Sonntag": {
-			day = 0;
+			day = 1;
 			break;
 		}
 		default: {
-			day = 1;
+			day = 2;
 			break;
 		}
 		}
